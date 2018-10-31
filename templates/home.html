@@ -1,0 +1,326 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> وبلوپرز -- مسابقه آموزشی وب </title>
+    <link rel="shortcut icon" href="{% static 'home/img/webelopers_icon.png' %} "/>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap4/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="{% static 'home/css/fonts/stylesheet.css' %}" rel='stylesheet' type="text/css">
+    <!-- Plugin CSS -->
+    <link href="{% static 'magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'home/css/creative.css' %}" rel="stylesheet">
+
+</head>
+
+<body id="page-top" dir="rtl">
+
+<!-- Navigation -->
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container col-12">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#about">درباره مسابقه</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#services">جوایز</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#register">ثبت‌نام</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#portfolio">سرویس‌ها</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#contact">ارتباط&thinsp;با&thinsp;ما</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="masthead text-center text-white d-flex">
+    <video id="bgvid" autoplay playsinline loop muted poster="{% static 'home/img/vid/Snapshots/Love-Coding.jpg' %}" >
+        <source src={% static 'home/img/vid/MP4/Love-Coding.mp4' %} type="video/mp4"/>
+        <source src={% static 'home/img/vid/WEBM/Love-Coding.webm' %} type="video/webm"/>
+        <source src={% static 'home/img/vid/OGV/Love-Coding.ogv' %} type="video/ogg"/>
+    </video>
+    <div class="container my-auto sr-button">
+        <div class="row">
+            <div class="col-lg-12 mx-auto -text-height">
+                <h1 class="large-fontsize">
+                    Webelopers
+                </h1>
+                <br>
+                <hr>
+                <h2 class="text-uppercase">
+                    <strong>
+                        <h2 href="" class="typewrite" data-period="2000"
+                            data-type='[ "به دومین دوره مسابقه آموزشی وبلوپرز خوش آمدید", "وقتشه که خودتو تو یه رقابت آموزش بدی!", "آماده ای؟", "زودتر یادگیری رو شروع کن!" ]'>
+                            <span class="wrap"></span>
+                        </h2>
+                    </strong>
+                </h2>
+                <hr>
+            </div>
+            <div class="col-lg-8 mx-auto">
+                <a class="btn btn-xl sr-button btn-primary js-scroll-trigger" href="#about">بیشتر بدانیم</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="text-light bg-dark" id="about" style="background-image: url({% static 'home/img/hero-bg.jpg' %})">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center sr-button">
+
+                <div class="container">
+                    <div class="row">
+                        <svg viewBox="0 0 1100 300">
+                            <symbol id="s-text">
+                                <text text-anchor="middle" x="50%" y="50%">Webelopers</text>
+                            </symbol>
+                            <g class="g-ants">
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                                <use xlink:href="#s-text" class="text-copy"></use>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <h1 class="section-heading"><strong>همون چیزی که دنبالشی</strong></h1>
+                <hr class="light my-4">
+                <p class="text-faded mb-4">وبلوپرز یه مسابقه آموزشیه که توسط انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه
+                    صنعتی شریف برگزار
+                    میشه و تو میتونی توش توی کارگاه‌ها برنامه‌نویسی وب یاد بگیری و توی دو روز با چیزایی که یاد گرفتی
+                    مسابقه بدی!</p>
+                <p class="text-faded mb-4"> منتظری؟ زودتر ثبت نام کن دیگه !</p>
+                <a class="text-warning" href="/blog/"> برای اطلاعات بیشتر اینجا را مطالعه کنید... </a>
+                </br>
+                </br>
+                <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">جاییزش چیه؟</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" dir="ltr" class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading"><strong>جوایز این دوره</strong>
+                </h2>
+                <hr class="my-4">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row sr-button">
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <img src="{% static 'home/img/Cup3.png' %}">
+                    </br></br>
+                    <strong class="text-muted mb-0">تیم سوم</strong>
+                    </br></br>
+                    <h3 class="mb-3"><strong> دو میلیون ریال</strong></h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <img src="{% static 'home/img/Cup1.png' %}">
+                    </br></br>
+                    <strong class="text-muted mb-0">تیم قهرمان</strong>
+                    </br></br>
+                    <h3 class="mb-3"><strong> پنج میلیون ریال </strong></h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <img src="{% static 'home/img/Cup2.png' %}">
+                    </br></br>
+                    <strong class="text-muted mb-0">تیم دوم</strong>
+                    </br></br>
+                    <h3 class="mb-3"><strong> سه میلیون ریال </strong></h3>
+                </div>
+            </div>
+        </div>
+        <div align="center">
+            <i class="fa fa-plus fa-3x mb-3 sr-contact"></i>
+            </br>
+            <h3 class="mb-3 sr-contact"><strong> یادگیری و یادگاری و جوایزی دیگر</strong></h3>
+        </div>
+    </div>
+</section>
+
+<section class="text-light" id="register" style="background-image: url({% static 'home/img/hero-bg.jpg' %})">
+
+    <div class="container text-center">
+        <h1 class="mb-1 sr-button"><strong>ثبت‌نام</strong></h1>
+        </br>
+        <h3>آمار تعداد تیم‌های ثبت‌نام شده تا کنون</h3>
+        </br>
+        <i class="fa fa-users fa-5x mb-3 sr-contact"></i>
+        </br>
+        <h1 class=""><strong>{{ numberOfTeams }}</strong></h1>
+        </br>
+        <a class="btn btn-xl sr-button btn-light text-dark" href="{% url 'features:scoreboard' %}">ثبت‌نامم کن!</a>
+
+    </div>
+
+</section>
+
+<section class="text-dark bg-light" id="register">
+    <div class="container text-center">
+        <h1 class="mb-1 sr-button"><strong>زمان را از دست ندهید</strong></h1>
+        <hr>
+        <p> ثبت‌‌نام : ۱۶مهر - ۱۸مهر </p>
+        <hr>
+        <p> کارگاه‌ها : ۱۸مهر - ۲۰مهر </p>
+        <hr>
+        <p> مسابقه : ۲۵ و ۲۶ مهرماه</p>
+        <hr>
+        <h3>مدت زمان باقی مانده تا شروع مسابقه</h3>
+        </br>
+        <div id="countdown" class="col-xs-5 col-sm-6 col-lg-4">
+            <div id='tiles'></div>
+            </br>
+            <div class="labels">
+                <li>ثانیه</li>
+                <li>دقیقه</li>
+                <li>ساعت</li>
+                <li>روز</li>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="text-white bg-dark" id="portfolio" style="background-image: url({% static 'home/img/hero-bg.jpg' %})">
+    <div class="container border-left text-left border-secondary">
+        <h2 class="mb-4 sr-button"><strong>میخوای اخبار مسابقه رو داشته باشی؟ </strong></h2>
+        <a class="btn btn-xl sr-button btn-primary" href="./blog">وارد شو!</a>
+
+    </div>
+    <div class="container border-right text-right border-secondary">
+        <h2 class="mb-4 sr-button"><strong>میخوای وارد فضای مسابقه شی؟ </strong></h2>
+        <a class="btn btn-xl sr-button btn-primary" href="/judge">وارد شو!</a>
+
+    </div>
+</section>
+
+<section id="contact" class="text-light">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading"><strong>ارتباط بیشتر </strong></h2>
+                <hr class="my-4">
+                <p class="mb-5">جواب سوالات رو پیدا نکردی؟ با ما ارتباط داشته باش!</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h2 align="middle"> برگزار کننده </h2>
+            </div>
+            <div class="col">
+                <h2 align="middle"> مکان </h2>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-5">
+                <a href="http://ssc.ce.sharif.edu">
+                    <img src="{% static 'home/img/SSC.png' %}" width="350">
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <iframe width="350" height="170" align="middle" id="google_maps_iframe"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9627430847677!2d51.34888151486223!3d35.702534430189345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a61f30034b%3A0xe59caa3900cd3c54!2sTehran+Province%2C+Tehran%2C+Azadi+St%2C+Dept.+of+Computer+Eng.%2C+Iran!5e0!3m2!1sen!2s!4v1516927405125"
+                        style="border: 0" frameborder="0"></iframe>
+                <br>
+                <p align="left" class="small">خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر
+                </p>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <h2 align="middle"> حامی مالی </h2>
+            </div>
+            <div class="col">
+                <h2 align="middle"> اطلاعات تماس </h2>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="http://ssc.ce.sharif.edu">
+                    <img src="{% static 'home/img/mahsan.png' %}" width="150">
+                </a>
+            </div>
+            <div class="col-sm-7" align="left">
+                <strong>
+                    <p class="small">
+                        ایمیل:
+                        <a href="mailto:webelopers@ce.sharif.edu">‌‌‌‌‌‌‌webelopers@ce.sharif.edu</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br>
+                        شماره تماس: 5718-6616-021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br>
+                        تلگرام:
+                        <a href="http://t.me/webelopers">webelopers@</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </p>
+                </strong>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="credits" class="text-white" style="background-image: url({% static 'home/img/hero-bg.jpg' %})">
+    <div class="container" align="middle">
+        تمامی حقوق برای انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف محفوظ است.
+    </div>
+
+</section>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'jquery/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap4/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Plugin JavaScript -->
+<script src="{% static 'jquery-easing/jquery.easing.min.js' %}"></script>
+<script src="{% static 'scrollreveal/scrollreveal.min.js' %}"></script>
+<script src="{% static 'magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{% static 'home/js/creative.js' %}"></script>
+
+</body>
+
+</html>
