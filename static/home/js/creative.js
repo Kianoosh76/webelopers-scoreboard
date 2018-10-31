@@ -95,7 +95,7 @@
         return a[parseInt(n / 10)] + a[n % 10];
     }
 
-    var target_time = new Date().getTime() + 36000000;
+    var target_time = 1542861000000;
     var days, hours, minutes, seconds; // variables for time units
 
     var countdown = document.getElementById("tiles"); // get tag element
