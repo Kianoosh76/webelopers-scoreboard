@@ -4,12 +4,6 @@
 //paste this code under the head tag or in a separate js file.
     // Wait for window load
 
-    function f(){
-        $('.loader').fadeOut();
-    };
-
-    setTimeout(f, 2500)
-
     // Smooth scrolling using jQuery easing
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
