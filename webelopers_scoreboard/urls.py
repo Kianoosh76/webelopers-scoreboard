@@ -25,6 +25,6 @@ contestpatterns = [url(r'^login/$', auth_views.LoginView.as_view(template_name='
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('intro.urls'), name='intro'),
+    url(r'^', include('intro.urls'), name='intro'),
     url(r'^contest/', include(contestpatterns))
 ]
