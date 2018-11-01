@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.views.generic import TemplateView
 
 contestpatterns = [url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
                    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
@@ -26,6 +25,6 @@ contestpatterns = [url(r'^login/$', auth_views.LoginView.as_view(template_name='
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^$', include('intro.urls'), name='intro'),
     url(r'^contest/', include(contestpatterns))
 ]
