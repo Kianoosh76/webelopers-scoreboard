@@ -9,8 +9,12 @@ from solo.models import SingletonModel
 
 
 class Judge(models.Model):
-    user = models.OneToOneField(to=User, related_name='judge')
+    user = models.OneToOneField(to=User, related_name='judge', null=True, default=None)
     name = models.CharField(max_length=30)
+
+    @classmethod
+    def get_automated(cls):
+        return cls.objects.get(name=settings.AUTOMATED_JUDGE_NAME)
 
     def __str__(self):
         return self.name

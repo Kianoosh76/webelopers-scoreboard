@@ -141,4 +141,8 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL= '/'
 
+TESTER_URL = 'localhost'
+TESTER_PORT = '6543'
+AUTOMATED_JUDGE_NAME = 'Automated'
+
 FROZEN_SCOREBOARD_DIR = os.path.join(os.path.join(BASE_DIR, 'templates'), 'frozen_scoreboard.html')
