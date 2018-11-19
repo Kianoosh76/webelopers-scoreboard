@@ -139,7 +139,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
 
-LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = reverse_lazy('features:scoreboard')
 LOGOUT_REDIRECT_URL= '/'
 
