@@ -1,5 +1,5 @@
 from features.models import Attempt, Feature
-from jury.models import JudgeRequestAssigment, JudgeRequest
+from jury.models import JudgeRequestAssignment, JudgeRequest
 from teams.models import Team
 
 for team in Team.objects.all():

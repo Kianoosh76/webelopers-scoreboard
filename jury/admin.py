@@ -1,18 +1,20 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
 
-from jury.models import Judge, JudgeRequest, JudgeRequestAssigment, Config
+from jury.models import JudgeRequest, JudgeRequestAssignment, Config, HumanJudge, \
+    AutomatedJudge
 
 
 class AssigneeInline(admin.TabularInline):
-    model = JudgeRequestAssigment
+    model = JudgeRequestAssignment
 
 
 class JudgeRequestAdmin(admin.ModelAdmin):
     inlines  = [AssigneeInline]
 
 
-admin.site.register(Judge)
+admin.site.register(HumanJudge)
+admin.site.register(AutomatedJudge)
 admin.site.register(JudgeRequest, JudgeRequestAdmin)
-admin.site.register(JudgeRequestAssigment)
+admin.site.register(JudgeRequestAssignment)
 admin.site.register(Config, SingletonModelAdmin)

@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 
-from jury.views import AssignView, DeassignView, JudgingView
+from jury.views import AssignView, DeassignView, JudgingView, AutomatedJudgingView
 from jury.views import JudgeRequestsListView
 
 judge_request_urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^judge-requests/$', JudgeRequestsListView.as_view(), name='judge-requests'),
     url(r'^judge-request/(?P<pk>\w+)/', include(judge_request_urlpatterns,
                                                  namespace='judge-request')),
+    url(r'^judge/automated/$', AutomatedJudgingView.as_view(), name='judge-automated'),
 ]

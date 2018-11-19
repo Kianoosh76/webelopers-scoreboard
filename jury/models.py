@@ -1,3 +1,5 @@
+from random import randint
+
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models, connection
@@ -5,19 +7,30 @@ from django.db.models.aggregates import Sum, Avg, Max
 from django.db.models.signals import post_save, pre_save
 from django.test.client import Client
 from django.urls import reverse
+from polymorphic.models import PolymorphicModel
 from solo.models import SingletonModel
 
 
-class Judge(models.Model):
-    user = models.OneToOneField(to=User, related_name='judge', null=True, default=None)
+class Judge(PolymorphicModel):
     name = models.CharField(max_length=30)
-
-    @classmethod
-    def get_automated(cls):
-        return cls.objects.get(name=settings.AUTOMATED_JUDGE_NAME)
 
     def __str__(self):
         return self.name
+
+
+class HumanJudge(Judge):
+    user = models.OneToOneField(to=User, related_name='judge', null=True, default=None)
+
+
+class AutomatedJudge(Judge):
+    ip_address = models.GenericIPAddressField(unique=True)
+    port = models.PositiveIntegerField(default=settings.DEFAULT_JUDGE_PORT)
+
+    @classmethod
+    def get_random_judge(cls):
+        count = cls.objects.count()
+        random_index = randint(0, count-1)
+        return cls.objects.all()[random_index]
 
 
 class JudgeRequest(models.Model):
@@ -61,7 +74,7 @@ class JudgeRequest(models.Model):
         return self.assignees.aggregate(is_passed=agg('is_passed'))['is_passed'] or False
 
 
-class JudgeRequestAssigment(models.Model):
+class JudgeRequestAssignment(models.Model):
     judge = models.ForeignKey(to=Judge, related_name='assignments')
     score = models.FloatField(null=True, blank=True)
     is_passed = models.BooleanField(default=False)
@@ -76,6 +89,8 @@ class JudgeRequestAssigment(models.Model):
 class Config(SingletonModel):
     day = models.IntegerField(default=1)
     is_frozen = models.BooleanField(default=False)
+    assign_to_automated_judge = models.BooleanField(default=True)
+    test_prerequisites = models.BooleanField(default=False)
 
 
 def freeze_handler(sender, instance, **kwargs):
