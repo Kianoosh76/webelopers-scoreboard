@@ -110,4 +110,3 @@ collected_static/
 media/
 gunicorn.conf.py
 gunicorn.pid
-frozen_scoreboard.html

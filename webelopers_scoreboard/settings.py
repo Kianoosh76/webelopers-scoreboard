@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.urls.base import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -138,9 +140,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
 
 LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = reverse_lazy('features:scoreboard')
 LOGOUT_REDIRECT_URL= '/'
 
 DEFAULT_JUDGE_PORT = '6543'
 
-FROZEN_SCOREBOARD_DIR = os.path.join(os.path.join(BASE_DIR, 'templates'), 'frozen_scoreboard.html')
+FROZEN_SCOREBOARD_TAG = 'scoreboard-body'

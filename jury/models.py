@@ -3,10 +3,7 @@ from random import randint
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models, connection
-from django.db.models.aggregates import Sum, Avg, Max
-from django.db.models.signals import post_save, pre_save
-from django.test.client import Client
-from django.urls import reverse
+from django.db.models.aggregates import Avg, Max
 from polymorphic.models import PolymorphicModel
 from solo.models import SingletonModel
 
@@ -89,20 +86,6 @@ class JudgeRequestAssignment(models.Model):
 class Config(SingletonModel):
     day = models.IntegerField(default=1)
     is_frozen = models.BooleanField(default=False)
+    frozen_scoreboard = models.TextField(default="", blank=True)
     assign_to_automated_judge = models.BooleanField(default=True)
     test_prerequisites = models.BooleanField(default=False)
-
-
-def freeze_handler(sender, instance, **kwargs):
-    if instance.is_frozen:
-        client = Client()
-        response = client.get(reverse('features:scoreboard')).content.decode()
-        file = open(settings.FROZEN_SCOREBOARD_DIR, 'w')
-        file.write(response)
-        file.close()
-
-
-# TODO: this sends request with no logged in user so link to judge-request disappers
-# I fixed this manually! Everytime I save config I should put the link manually
-# in the frozen_scoreboard.html
-pre_save.connect(freeze_handler, sender=Config)

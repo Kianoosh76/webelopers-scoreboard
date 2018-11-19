@@ -1,5 +1,10 @@
+from bs4 import BeautifulSoup
 from django.apps import AppConfig
-from django.db.models.signals import post_save
+from django.conf import settings
+from django.db.models.signals import post_save, pre_save
+
+from django.test.client import Client
+from django.urls import reverse
 
 
 def update_corresponding_attempt(sender, instance, created, **kwargs):
@@ -15,9 +20,19 @@ def update_corresponding_attempt(sender, instance, created, **kwargs):
     attempt.save()
 
 
+def freeze_handler(sender, instance, **kwargs):
+    if instance.is_frozen and not instance.frozen_scoreboard:
+        client = Client()
+        response = BeautifulSoup(client.get(reverse('features:scoreboard')).content, 'html.parser')
+        instance.frozen_scoreboard = str(response.find(id=settings.FROZEN_SCOREBOARD_TAG))
+    elif not instance.is_frozen and instance.frozen_scoreboard:
+        instance.frozen_scoreboard = ""
+
+
 class JuryConfig(AppConfig):
     name = 'jury'
 
     def ready(self):
-        from jury.models import JudgeRequestAssignment
+        from jury.models import JudgeRequestAssignment, Config
         post_save.connect(update_corresponding_attempt, sender=JudgeRequestAssignment)
+        pre_save.connect(freeze_handler, sender=Config)

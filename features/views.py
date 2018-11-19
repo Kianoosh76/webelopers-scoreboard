@@ -1,6 +1,7 @@
 import functools
 from operator import itemgetter
 
+from django.conf import settings
 from django.db.models import Sum
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
@@ -13,18 +14,19 @@ from teams.models import Team
 class ScoreboardView(TemplateView):
     template_name = 'scoreboard.html'
 
-    def get(self, request, *args, **kwargs):
-        if Config.get_solo().is_frozen and not hasattr(request.user, 'judge') and \
-                not request.user.is_superuser:
-            self.template_name = 'frozen_scoreboard.html'
-        return super().get(request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        config = Config.get_solo()
+        if config.is_frozen and not hasattr(self.request.user, 'judge') and \
+                not self.request.user.is_superuser:
+            return {'frozen_data': config.frozen_scoreboard}
+
+        context['scoreboard_tag'] = settings.FROZEN_SCOREBOARD_TAG
         all_teams = Team.objects.all()
         if self.request.GET.get('show-unofficial') != 'true':
             all_teams = all_teams.filter(is_official=True)
-        day = Config.get_solo().day
+        day = config.day
+
         if day == 1:
             context['headers'] = ['Team Name'] + [feature.id for feature in
                                                   Feature.objects.filter(day=1)] + ['Total Score']

@@ -10,11 +10,15 @@ class AssigneeInline(admin.TabularInline):
 
 
 class JudgeRequestAdmin(admin.ModelAdmin):
-    inlines  = [AssigneeInline]
+    inlines = [AssigneeInline]
 
+
+class ConfigAdmin(SingletonModelAdmin):
+    model = Config
+    exclude = ['frozen_scoreboard']
 
 admin.site.register(HumanJudge)
 admin.site.register(AutomatedJudge)
 admin.site.register(JudgeRequest, JudgeRequestAdmin)
 admin.site.register(JudgeRequestAssignment)
-admin.site.register(Config, SingletonModelAdmin)
+admin.site.register(Config, ConfigAdmin)
