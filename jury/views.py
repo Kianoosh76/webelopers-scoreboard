@@ -44,6 +44,7 @@ class AutomatedJudgingView(UpdateView):
         else:
             object.score = 0
             object.is_passed = False
+        object.message = request.POST['log']
         object.judge_request.is_closed = True
         object.judge_request.save()
         object.save()

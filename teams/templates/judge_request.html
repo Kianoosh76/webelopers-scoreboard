@@ -21,8 +21,36 @@
         {% for judge_request in judge_requests %}
             <tr>
                 <td> <a href="{% url 'features:feature' pk=judge_request.feature.id %}">{{ judge_request.feature }}</a></td>
-                <td><b>{% if judge_request.is_closed %}closed{% else %}testing...{% endif %}</b></td>
-                <td><span class="glyphicon {% if judge_request.is_passed %}glyphicon-ok" style="color:green"{% elif judge_request.is_closed %}glyphicon-remove" style="color:red"{% else %}glyphicon-question-sign" {% endif %}></span></td>
+                <td><b>{% if judge_request.is_closed %}
+                    closed
+                    {% else %}testing...{% endif %}</b></td>
+                <td><span class="glyphicon {% if judge_request.is_passed %}glyphicon-ok" style="color:green"{% elif judge_request.is_closed %}glyphicon-remove" style="color:red"{% else %}glyphicon-question-sign" {% endif %}>
+                    {% if not judge_request.is_passed %}
+                      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Info</button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="myModal" role="dialog" style="color: black">
+                        <div class="modal-dialog">
+
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Info</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>{{ judge_request.message }}</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    {% endif %}
+                    </span></td>
                 <td>{{ judge_request.score }}</td>
             </tr>
         {% endfor %}

@@ -23,16 +23,12 @@ class JudgeRequestView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         if not Config.get_solo().assign_to_automated_judge:
             return super().form_valid(form)
-        feature = form.cleaned_data['feature']
-        if Config.get_solo().test_prerequisites:
-            tests_id = feature.prerequisites.values_list('id', flat=True) + [feature.id]
-        else:
-            tests_id = [feature.id]
 
         data = {
             'group_id': self.request.user.team.pk,
             'ip': get_client_ip(self.request),
-            'test_order': ', '.join(tests_id)
+            'test_order': form.cleaned_data['feature'].id,
+            'port': 8000,
         }
         assigned_judge = AutomatedJudge.get_random_judge()
         try:

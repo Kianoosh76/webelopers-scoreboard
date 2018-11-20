@@ -27,7 +27,7 @@ SECRET_KEY = 'sag'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['testserver', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['testserver', '127.0.0.1', 'localhost', '192.168.203.52', '0.0.0.0']
 
 
 # Application definition

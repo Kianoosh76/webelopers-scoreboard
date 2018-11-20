@@ -5,12 +5,12 @@ from django.db import models
 class Feature(models.Model):
     name = models.CharField(max_length=30)
     score = models.IntegerField()
-    id = models.CharField(primary_key=True, max_length=10)
+    slug = models.CharField(unique=True, max_length=10)
     prerequisites = models.ManyToManyField(to='Feature', blank=True)
     day = models.IntegerField()
 
     def __str__(self):
-        return '{}: {}'.format(self.id, self.name)
+        return '{}: {}'.format(self.slug, self.name)
 
 
 class Attempt(models.Model):

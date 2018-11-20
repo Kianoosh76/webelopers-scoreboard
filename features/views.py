@@ -28,7 +28,7 @@ class ScoreboardView(TemplateView):
         day = config.day
 
         if day == 1:
-            context['headers'] = ['Team Name'] + [feature.id for feature in
+            context['headers'] = ['Team Name'] + [feature.slug for feature in
                                                   Feature.objects.filter(day=1)] + ['Total Score']
             context['standings'] = sorted([[team.display_name] + [
                 Attempt.objects.get(team=team, feature=feature).score if Attempt.objects.filter(
@@ -39,7 +39,8 @@ class ScoreboardView(TemplateView):
                                           key=itemgetter(len(context['headers']) - 1), reverse=True)
 
         else:
-            context['headers'] = ['Team Name'] + ['Day1'] + [feature.id for feature in
+            context['headers'] = ['Team Name'] + ['Day1'] + [feature.slug
+                                                             for feature in
                                                              Feature.objects.filter(day=2)] + [
                                      'Total Score']
             context['standings'] = sorted([[team.display_name] + [
