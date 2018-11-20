@@ -1,3 +1,5 @@
+from threading import Timer
+
 import requests
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse
@@ -42,7 +44,16 @@ class JudgeRequestView(LoginRequiredMixin, CreateView):
             return super().form_invalid(form)
         else:
             ret = super().form_valid(form)
-            JudgeRequestAssignment.objects.create(score=None, judge_request=form.instance, judge=assigned_judge)
+            assignment = JudgeRequestAssignment.objects.create(score=None, judge_request=form.instance, judge=assigned_judge)
+            def timeout():
+                if assignment.score is None:
+                    assignment.score = 0
+                    assignment.is_passed = False
+                    assignment.message = 'Request has been timed out.'
+                    assignment.save()
+                    assignment.judge_request.is_closed = True
+                    assignment.judge_request.save()
+            Timer(Config.get_solo().timeout_minutes * 60, timeout).start()
             return ret
 
     def get_form_kwargs(self):

@@ -96,3 +96,4 @@ class Config(SingletonModel):
     is_frozen = models.BooleanField(default=False)
     frozen_scoreboard = models.TextField(default="", blank=True)
     assign_to_automated_judge = models.BooleanField(default=True)
+    timeout_minutes = models.PositiveIntegerField(default=10)

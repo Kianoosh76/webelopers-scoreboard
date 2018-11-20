@@ -23,7 +23,7 @@
                 <td>{{ judge_request.time }}</td>
                 <td><b>{% if judge_request.is_closed %}closed{% else %}testing...{% endif %}</b></td>
                 <td><span class="glyphicon {% if judge_request.is_passed %}glyphicon-ok" style="color:green"{% elif judge_request.is_closed %}glyphicon-remove" style="color:red"{% else %}glyphicon-question-sign" {% endif %}>
-                                        {% if not judge_request.is_passed %}
+                                        {% if judge_request.is_closed and not judge_request.is_passed %}
                       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Info</button>
 
                       <!-- Modal -->

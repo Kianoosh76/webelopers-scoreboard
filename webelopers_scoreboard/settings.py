@@ -149,3 +149,11 @@ FROZEN_SCOREBOARD_TAG = 'scoreboard-body'
 
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': '/var/backups'}
+
+DBBACKUP_CONNECTORS = {
+    'default': {
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': ''
+    }
+}
