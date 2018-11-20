@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dbbackup',
     'django_extensions',
     'intro',
     'teams',
@@ -145,3 +146,6 @@ LOGOUT_REDIRECT_URL= '/'
 DEFAULT_JUDGE_PORT = '6543'
 
 FROZEN_SCOREBOARD_TAG = 'scoreboard-body'
+
+DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
+DBBACKUP_STORAGE_OPTIONS = {'location': '/var/backups'}
