@@ -147,5 +147,5 @@ DEFAULT_JUDGE_PORT = '6543'
 
 FROZEN_SCOREBOARD_TAG = 'scoreboard-body'
 
-DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
+DBBACKUP_STORAGE = 'django.core.files.storages.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': '/var/backups'}
