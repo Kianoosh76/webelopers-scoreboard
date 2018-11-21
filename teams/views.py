@@ -35,8 +35,8 @@ class JudgeRequestView(LoginRequiredMixin, CreateView):
         assigned_judge = AutomatedJudge.get_random_judge()
         try:
             response = requests.post('http://' + assigned_judge.ip_address + ":" + str(assigned_judge.port), data, timeout=10)
-        except Exception as exp:
-            form.add_error('feature', str(exp))
+        except Exception as exc:
+            form.add_error('feature', str(exc))
             return super().form_invalid(form)
 
         if response.status_code != 200:
