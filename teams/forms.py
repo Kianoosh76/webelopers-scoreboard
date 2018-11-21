@@ -25,10 +25,11 @@ class JudgeRequestForm(ModelForm):
         if len(error_features):
             self.add_error('feature', 'Prerequisite problem! '
                                       'You should pass {} first then submit a judge'
-                                      ' request for this feature!'.format(', '.join(error_features)))
+                                      ' request for this feature!'.format(
+                ', '.join(error_features)))
 
         elif JudgeRequest.objects.filter(team=self.request.user.team, feature=data['feature'],
-                                       is_closed=False).exists():
+                                         is_closed=False).exists():
             self.add_error('feature', 'You already have an open judge request for this feature!')
 
         return data
