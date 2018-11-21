@@ -140,7 +140,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
 
 LOGIN_REDIRECT_URL = reverse_lazy('features:scoreboard')
-LOGOUT_REDIRECT_URL= '/'
+LOGOUT_REDIRECT_URL= reverse_lazy('features:scoreboard')
 
 DEFAULT_JUDGE_PORT = '6543'
 
@@ -148,11 +148,3 @@ FROZEN_SCOREBOARD_TAG = 'scoreboard-body'
 
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': '/var/backups'}
-
-DBBACKUP_CONNECTORS = {
-    'default': {
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': ''
-    }
-}
