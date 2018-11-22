@@ -29,7 +29,7 @@ class JudgeRequestView(LoginRequiredMixin, CreateView):
         data = {
             'group_id': self.request.user.team.pk,
             'ip': get_client_ip(self.request),
-            'test_order': form.cleaned_data['feature'].id,
+            'test_order': int(form.cleaned_data['feature'].name),
             'port': 8000,
         }
         assigned_judge = AutomatedJudge.get_random_judge()
