@@ -46,6 +46,7 @@ class JudgeRequestView(LoginRequiredMixin, CreateView):
             ret = super().form_valid(form)
             assignment = JudgeRequestAssignment.objects.create(score=None, judge_request=form.instance, judge=assigned_judge)
             def timeout():
+                assignment.refresh_from_db()
                 if assignment.score is None:
                     assignment.score = 0
                     assignment.is_passed = False
