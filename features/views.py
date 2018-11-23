@@ -25,7 +25,7 @@ class ScoreboardView(TemplateView):
         all_teams = Team.objects.all()
         if self.request.GET.get('show-unofficial') != 'true':
             all_teams = all_teams.filter(is_official=True)
-        day = config.day
+        day = int(self.request.GET.get('day', config.day))
 
         if day == 1:
             context['headers'] = ['Team Name'] + [feature.slug for feature in
@@ -39,7 +39,7 @@ class ScoreboardView(TemplateView):
                                           key=itemgetter(len(context['headers']) - 1), reverse=True)
 
         else:
-            context['headers'] = ['Team Name'] + ['Day1'] + [feature.slug
+            context['headers'] = ['Team Name'] + ['<a href="?day=1">Day 1</a>'] + [feature.slug
                                                              for feature in
                                                              Feature.objects.filter(day=2)] + [
                                      'Total Score']

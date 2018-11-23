@@ -14,7 +14,7 @@
             <thead>
                 <th>Rank</th>
             {% for header in headers %}
-                <th>{{ header }}</th>
+                <th>{{ header|safe }}</th>
             {% endfor %}
             </thead>
             <tbody>
