@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'features',
     'widget_tweaks',
     'solo',
+    'people'
 ]
 
 MIDDLEWARE = [

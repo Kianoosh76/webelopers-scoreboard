@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^contest/', include(contestpatterns)),
     url(r'^', include('intro.urls'), name='intro'),
+    url(r'^', include('people.urls', namespace='people'))
 ]
