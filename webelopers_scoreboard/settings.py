@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'features',
     'widget_tweaks',
     'solo',
-    'people'
+    'people',
+    'WSS',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +60,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SITE_ROOT = os.path.dirname(__file__)
+THUMBNAIL_DEBUG = True
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ROOT_URLCONF = 'webelopers_scoreboard.urls'
 

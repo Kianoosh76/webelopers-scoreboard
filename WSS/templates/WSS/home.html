@@ -1,0 +1,370 @@
+{% extends 'wssbase.html' %}
+{% load static %}
+{% load date_tags %}
+{% load human_tags %}
+{% block header %}
+   <!-- Header start -->
+   <header id="header" class="header header-transparent">
+      <div class="container">
+         <div class="row">
+            <div class="site-nav-inner">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+               </button>
+               <nav class="collapse navbar-collapse navbar-responsive-collapse pull-right">
+                  <ul class="nav navbar-nav">
+                     <li><a href="{% url 'wss:home' wss.year %}">{{ wss }}</a></li>
+                     <!--<li class="dropdown">-->
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">About <i class="fa fa-angle-down"></i></a>-->
+                        <!--<ul class="dropdown-menu menu-center" role="menu">-->
+                           <!--<li><a href="about.html">Why Attend</a></li>-->
+                           <!--<li><a href="staffs.html">Staffs</a></li>-->
+                           <!--<li><a href="gallery.html">Gallery</a></li>-->
+                           <!--<li><a href="sponsors.html">Sponsors</a></li>-->
+                        <!--</ul>-->
+                     <!--</li>-->
+                     <li><a data-scroll href="#ts-intro">About</a></li>
+                     <li><a data-scroll href="#ts-speakers">Speakers</a></li>
+                     {% if wss.workshops.count %}
+                     <li><a data-scroll href="{% url 'wss:workshops-list' wss.year %}">Workshops</a></li>
+                     {% endif %}
+                     <li><a data-scroll href="#ts-sponsors">Sponsors</a></li>
+                     <li><a href="{% url 'wss:schedule' wss.year %}">Schedule</a></li>
+                     <li><a data-scroll href="{% url 'wss:staff-list' wss.year %}">Staff</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gallery <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu menu-center" role="menu">
+                            <li><a href="{% url 'wss:gallery-image' wss.year %}">Images</a></li>
+                            <li><a href="{% url 'wss:gallery-video' wss.year %}">Videos</a></li>
+                        </ul>
+                    </li>
+                   {% if wss.is_active %}
+                        {% if wss.registration_link %}
+                        <li class="header-ticket">
+                           <a class="ticket-btn btn-primary" href="{{ wss.registration_link }}">Register</a>
+                        </li>
+                        {% endif %}
+                   {% else %}
+                                                  <li class="header-ticket">
+                             <a href="{% url 'wss:home' %}" class="ticket-btn btn-primary">Visit the Latest seminar page</a>
+                                                  </li>
+                     {% endif %}
+                     <!-- Register li end -->
+                  </ul>
+                  <!--/ Nav ul end -->
+               </nav>
+               <!--/ Collapse end -->
+            </div>
+            <!--/ Site nav inner end -->
+         </div>
+         <!--/ Row end -->
+      </div>
+      <!--/ Container end -->
+   </header>
+   <!--/ Header end -->
+
+   <section id="banner">
+      <div class="banner-item bg-overlay" style="background-image:url('{{ wss.main_image_url }}')">
+         <div class="container">
+            <div class="banner-content text-center">
+                   {% if wss.is_active %}
+                    <div class="banner-content-wrap">
+                      <div class="countdown bg-style">
+                         <div class="counter-day">
+                            <span class="days">00</span>
+                            <div class="smalltext">Days</div>
+                         </div>
+                         <div class="counter-hour">
+                            <span class="hours">00</span>
+                            <div class="smalltext">Hours</div>
+                         </div>
+                         <div class="counter-minute">
+                            <span class="minutes">00</span>
+                            <div class="smalltext">Minutes</div>
+                         </div>
+                         <div class="counter-second">
+                            <span class="seconds">00</span>
+                            <div class="smalltext">Seconds</div>
+                         </div>
+                      </div>
+                    </div>
+
+                   {% endif %}
+                  <!-- Countdown end -->
+                  <h1 class="banner-title">WINTER SEMINAR SERIES</h1>
+                  <h2 class="banner-subtitle2">ADVANCED TOPICS IN COMPUTER SCIENCE AND ENGINEERING</h2>
+
+                  <input type="hidden" value="{{ wss.start_date|date:'m/d/Y' }}" id="start-date">
+                  <h2 class="banner-subtitle">{% render_date wss %}</h2>
+                  <h3 class="banner-desc">IRAN, TEHRAN, SHARIF UNIVERSITY OF TECHNOLOGY</h3>
+                  {% if wss.is_active %}
+                     {% if wss.registration_link %}
+                     <p class="banner-btn">
+                        <a href="{{ wss.registration_link }}" class="btn btn-primary">Register Now</a>
+                     </p>
+                     {% endif %}
+                  {% endif %}
+               <!-- Banner content wrap end -->
+            </div>
+            <!-- Banner content end -->
+         </div>
+         <!-- Container end -->
+      </div>
+      <!-- Banner item end -->
+   </section>
+   <!-- Section banner end -->
+
+   <section id="ts-intro" class="ts-intro no-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+               <h2 class="intro-title">About the Event</h2>
+               <p class="intro-desc">{{ wss.description }}</p>
+               {% if wss.is_active %}
+                  <p>
+                     {% if wss.registration_link %}
+                     <a href="{{ wss.registration_link }}" class="btn btn-primary">Register now</a>
+                     {% endif %}
+                     {% if wss.proposal_link %}
+                     <a href="{{ wss.proposal_link }}" class="btn btn-primary">Submit your proposal</a>
+                     {% endif %}
+                  </p>
+               {% else %}
+                  <h2 class="intro-title">This is not the last WSS!</h2>
+                  <a href="{% url 'wss:home' %}" class="btn btn-primary">Visit the Latest seminar page</a>
+               {% endif %}
+            </div>
+
+            {% if wss.main_clip_url %}
+            <div class="col-xs-12 col-sm-12 col-md-6">
+               <div class="intro-video">
+                  <video controls class="embed-responsive-item" src="{{ wss.main_clip_url }}" preload="none">
+                  </video>
+               </div>
+            {% endif %}
+
+            <!-- Col end -->
+            </div>
+         <!-- Content row 1 end -->
+         </div>
+      </div>
+      <!-- Container end -->
+   </section>
+   <!-- Intro area end -->
+
+   <section id="ts-statics" class="ts-statics">
+      <div class="container">
+         <div class="row">
+            <div class="statics clearfix">
+               <div class="col-md-3 col-xs-12 text-center">
+                  <a data-scroll href="#ts-speakers"><div class="ts-facts">
+                        <span class="ts-facts-img">
+                        <img src="{% static 'images/icons/fact-speaker.png' %}" alt="" />
+                        </span>
+                     <div class="ts-facts-content">
+                        <h2 class="ts-facts-num"><span class="counterUp">{{ wss.seminars.count }}</span></h2>
+                        <h3 class="ts-facts-title">Seminars</h3>
+                     </div>
+                  </div></a>
+                  <!--Facts end -->
+               </div>
+               <!-- Col end -->
+
+               <div class="col-md-3 col-xs-12 text-center">
+                  <a data-scroll href="{% url 'wss:workshops-list' wss.year %}"><div class="ts-facts">
+                        <span class="ts-facts-img">
+                        <img src="{% static 'images/icons/fact-workshop.png' %}" alt="" />
+                        </span>
+                     <div class="ts-facts-content">
+                        <h2 class="ts-facts-num"><span class="counterUp">{{ wss.workshops.count }}</span></h2>
+                        <h3 class="ts-facts-title">Workshops</h3>
+                     </div>
+                  </div></a>
+                  <!--Facts end -->
+               </div>
+               <div class="col-md-3 col-xs-12 text-center">
+                  <a data-scroll href="#ts-sponsors"><div class="ts-facts">
+                        <span class="ts-facts-img">
+                        <img src="{% static 'images/icons/fact-sponsor.png' %}" alt="" />
+                        </span>
+                     <div class="ts-facts-content">
+                        <h2 class="ts-facts-num"><span class="counterUp">{{ wss.sponsorships.count }}</span></h2>
+                        <h3 class="ts-facts-title">Sponsors</h3>
+                     </div>
+                  </div></a>
+                  <!--Facts end -->
+               </div>
+               <!-- Col end -->
+               <div class="col-md-3 col-xs-12 text-center">
+                 <a data-scroll href="{% url 'wss:staff-list' wss.year %}"> <div class="ts-facts">
+                        <span class="ts-facts-img">
+                        <img src="{% static 'images/icons/fact-country.png' %}" alt="Staff" />
+                        </span>
+                     <div class="ts-facts-content">
+                        <h2 class="ts-facts-num"><span class="counterUp">{{ wss.staff_count }}</span></h2>
+                        <h3 class="ts-facts-title">Staff</h3>
+                     </div>
+                  </div></a>
+                  <!--Facts end -->
+               </div>
+               <!-- Col end -->
+            </div>
+            <!-- Statics end -->
+         </div>
+         <!-- Row end -->
+      </div>
+      <!--/ Container end -->
+   </section>
+   <!--/ Newsletter end -->
+
+   <section id="ts-speakers" class="ts-speakers gradient-bg">
+   <div class="container">
+   <div class="row text-center">
+   <h2 class="section-title">About the seminar series</h2>
+   <h3 class="section-sub-title title-white">Keynote Speakers</h3>
+   </div>
+
+   <!--/ Title row end -->
+   <div class="row">
+
+      {% for seminar in wss.keynote_seminars %}
+      <div class="col-xs-12 col-sm-6 col-md-3">
+         {% render_human seminar.speaker subtitle=seminar.speaker.short_bio url=seminar.get_absolute_url %}
+      </div>
+      {% endfor %}
+
+   </div>
+   <br>
+   <div class="row text-center">
+   <h3 class="section-sub-title title-white">Speakers</h3>
+   </div>
+      {% for seminar in selected_seminars %}
+          <div class="col-xs-12 col-sm-6 col-md-3">
+         {% render_human seminar.speaker subtitle=seminar.speaker.short_bio url=seminar.get_absolute_url %}
+          </div>
+      {% endfor %}
+   </div>
+
+   <div class="row">
+   <div class="general-btn text-center">
+   <a class="btn btn-primary" href="{% url 'wss:seminars-list' wss.year %}">View All Speakers</a>
+   </div>
+   </div>
+   <!-- Content row 2 end -->
+   <!--/ Container end -->
+   </section>
+   <!-- Speakers end -->
+
+   <section id="ts-sponsors" class="ts-sponsors">
+       <div class="container">
+
+         <div class="row text-center">
+            <p class="section-sub-title">Event Sponsors</p>
+         </div>
+
+         <div class="row text-center">
+
+             {% if wss.not_main_sponsorships.count %}
+             <h3 class="sponsor-title" style="margin-bottom: 60px">Main Sponsors</h3>
+             {% endif %}
+
+             {% for sponsorship in wss.main_sponsorships %}
+
+                 <div class="col-xs-12 col-sm-4 col-md-4">
+
+                     <a href="{{ sponsorship.sponsor.url }}" class="sponsor-logo" style="margin-bottom: 20px; margin-top: 0px">
+
+                         <!--I tried to use thumbnail with fixed size here but it did not work well! -->
+                         <img class="img-responsive" src="{{ sponsorship.logo_url }}" width="630" height="265" alt=""/>
+
+                     </a>
+                    <a href="{{ sponsorship.sponsor.url }}">
+                    <h2 class="intro-title" style="margin-bottom: 60px"> {{ sponsorship.sponsor.name }}</h2> </a>
+
+                 </div>
+
+             {% endfor %}
+
+         </div>
+         {% if wss.not_main_sponsorships.count %}
+
+         <div class="row text-center sponsor-padding ">
+
+             <h3 class="sponsor-title" style="margin-bottom: 60px">Other Sponsors</h3>
+             {% for sponsorship in wss.not_main_sponsorships %}
+
+                 <div class="col-xs-12 col-sm-4 col-md-4">
+
+                     <a href="{{ sponsorship.sponsor.url }}" class="sponsor-logo" style="margin-bottom: 20px; margin-top: 0px;">
+
+                         <img class="img-responsive" src="{{ sponsorship.logo_url }}" width="630" height="265" alt=""/>
+
+                     </a>
+                    <a href="{{ sponsorship.sponsor.url }}">
+                    <h2 class="intro-title" style="margin-bottom: 60px"> {{ sponsorship.sponsor.name }}</h2> </a>
+
+                 </div>
+
+             {% endfor %}
+
+         </div>
+
+         {% endif %}
+        </div>
+    </section>
+
+   <section class="venu-map no-padding">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-6">
+            <div class="bottom-contact white">
+               <h4 class="white">Organizer info</h4>
+                  <p>The event is held by the <a href="http://ssc.ce.sharif.edu">Student Scientific
+                  Chapter (SSC)</a> of <a href="http://ce.sharif.edu">Computer Engineering Department</a>
+                  of <a href="http://sharif.edu">Sharif University of Technology</a>
+               </p>
+               <br>
+               <h4 class="white">Venue Details</h4>
+               <div class="contact-info">
+                  <div class="contact-info-box">
+                     <i class="fa fa-map-marker">&nbsp;</i>
+                     <div class="contact-info-box-content">
+                        <h5 class="white">Address: </h5>
+                        <p>Sharif University of Technology, Azadi Street, District 2, Tehran, Iran</p>
+                     </div>
+                  </div>
+                  <div class="contact-info-box">
+                     <i class="fa fa-envelope-o">&nbsp;</i>
+                     <div class="contact-info-box-content">
+                        <h5 class="white">Email: </h5>
+                        <p>wss@ce.sharif.edu</p>
+                     </div>
+                  </div>
+                  <div class="contact-info-box">
+                     <i class="fa fa-phone">&nbsp;</i>
+                     <div class="contact-info-box-content">
+                        <h5 class="white">Phone: </h5>
+                        <p>+98(021) 66 16 57 81</p>
+                     </div>
+                  </div>
+               </div>
+               <!-- Contact info end -->
+            </div>
+            <!-- Contact form div end -->
+         </div>
+         <!-- Col end -->
+         <div class="col-md-6">
+            <div id="map" class="map-bottom"></div>
+            <!-- Google Map -->
+         </div>
+         <!-- Col end -->
+      </div>
+      <!-- Content row end -->
+   </div>
+   <!-- Container end -->
+</section>
+<!-- Map end -->
+{% endblock %}

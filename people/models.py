@@ -16,8 +16,19 @@ class Human(PolymorphicModel):
     def picture_url(self):
         return self.picture.url if self.picture else None
 
+
+class Speaker(Human):
+    degree = models.CharField(max_length=30)
+    place = models.CharField(max_length=50)
+    bio = models.TextField()
+
+    @property
+    def short_bio(self):
+        return '{}, {}'.format(self.degree, self.place)
+
+
 class HoldingTeam(models.Model):
-    #wss = models.ForeignKey(to='WSS.WSS', related_name='holding_teams', verbose_name='WSS')
+    wss = models.ForeignKey(to='WSS.WSS', related_name='holding_teams', verbose_name='WSS')
     name = models.CharField(max_length=50)
     staff = models.ManyToManyField(to='Staff', related_name='holding_teams', blank=True)
 
