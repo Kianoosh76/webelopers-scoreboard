@@ -4,6 +4,11 @@
 
 {% block title %}دست‌اندرکاران وبلوپرز{% endblock %}
 
+{% block static %}
+    {{ block.super }}
+    <link href="{% static 'home/css/creative.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block navbar %}
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
