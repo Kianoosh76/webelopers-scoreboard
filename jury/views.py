@@ -37,6 +37,7 @@ class AutomatedJudgingView(UpdateView):
                                  judge_request__team__id=self.request.POST['group_id'])
 
     def post(self, request, *args, **kwargs):
+        print("morgh")
         object = self.get_object()
         if request.POST['verdict'] == 'ok':
             object.score = object.judge_request.feature.score
