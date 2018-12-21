@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'features',
     'widget_tweaks',
     'solo',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,8 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = reverse_lazy('features:scoreboard')
 LOGOUT_REDIRECT_URL= reverse_lazy('features:scoreboard')

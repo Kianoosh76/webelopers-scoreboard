@@ -4,6 +4,9 @@
     td{
       text-align: center;
     }
+    h1{
+        color:white;
+    }
     h2{
         color:white;
     }
@@ -156,4 +159,63 @@
   height: 100%;
   padding: 15px; /* firefox bug fix */
   width: auto;
+}
+
+.human-container{
+    background-color: white;
+    border: #CC4144 ridge 4px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 30px;
+    box-shadow: 0 25px 35px -20px rgba(0,0,0,1);
+    transition: all .4s ease;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.human-container:hover{
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+    box-shadow: 0 60px 40px -40px rgba(0,0,0,0.13);
+}
+
+.human-picture {
+    position: relative;
+    text-align: center;
+}
+
+.human-picture:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    -webkit-transition: 400ms;
+    -moz-transition: 400ms;
+    -o-transition: 400ms;
+    transition: 400ms;
+}
+
+@media (max-width: 767px) {
+    .human-picture img {
+        width: 100%;
+    }
+}
+
+.human-name{
+    margin-top: 8px;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.human-roles{
+    direction: rtl;
+    text-align: center;
+    color: black;
+    font-size: 16px;
 }

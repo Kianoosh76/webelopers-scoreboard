@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+
+from webelopers_scoreboard import settings
 
 contestpatterns = [url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
                    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
@@ -24,7 +27,8 @@ contestpatterns = [url(r'^login/$', auth_views.LoginView.as_view(template_name='
                    url(r'^', include('features.urls', namespace='features'))]
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^contest/', include(contestpatterns)),
-    url(r'^', include('intro.urls'), name='intro'),
-]
+                  url(r'^admin/', admin.site.urls),
+                  url(r'^contest/', include(contestpatterns)),
+                  url(r'^', include('intro.urls'), name='intro'),
+
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
