@@ -30,5 +30,4 @@ urlpatterns = [
                   url(r'^admin/', admin.site.urls),
                   url(r'^contest/', include(contestpatterns)),
                   url(r'^', include('intro.urls',namespace='intro')),
-
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
