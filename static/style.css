@@ -166,11 +166,12 @@
     border: #CC4144 ridge 4px;
     border-radius: 20px;
     overflow: hidden;
-    margin-top: 30px;
+    margin-top: 20px;
     box-shadow: 0 25px 35px -20px rgba(0,0,0,1);
     transition: all .4s ease;
     -webkit-transform: translateY(0);
     transform: translateY(0);
+    margin-bottom: 10px;
 }
 
 .human-container:hover{
@@ -210,7 +211,7 @@
     color: black;
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 .human-roles{
